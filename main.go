@@ -14,5 +14,6 @@ func main() {
 
 	log.Printf("Starting server on port: %d\n", *port)
 	http.Handle("/", server.NewReqParser(*port))
+	http.Handle("/dump", server.NewReqDumper(*port))
 	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(*port), nil))
 }
