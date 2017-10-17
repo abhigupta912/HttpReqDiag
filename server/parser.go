@@ -9,20 +9,20 @@ import (
 	"strconv"
 )
 
-type ReqTester struct {
+type ReqParser struct {
 	port int
 }
 
-func NewReqTester(port int) *ReqTester {
-	return &ReqTester{port: port}
+func NewReqParser(port int) *ReqParser {
+	return &ReqParser{port: port}
 }
 
-func (t *ReqTester) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (parser *ReqParser) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/plain")
-	fmt.Fprintf(w, t.parseReq(r))
+	fmt.Fprintln(w, parser.parseReq(r))
 }
 
-func (t *ReqTester) parseReq(r *http.Request) string {
+func (parser *ReqParser) parseReq(r *http.Request) string {
 	output := bytes.NewBufferString("Parsing request\n")
 
 	output.WriteString("Proto: ")

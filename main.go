@@ -13,6 +13,6 @@ func main() {
 	flag.Parse()
 
 	log.Printf("Starting server on port: %d\n", *port)
-	http.Handle("/", server.NewReqTester(*port))
+	http.Handle("/", server.NewReqParser(*port))
 	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(*port), nil))
 }
